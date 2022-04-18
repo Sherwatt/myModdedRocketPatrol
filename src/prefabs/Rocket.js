@@ -19,6 +19,8 @@ class Rocket extends Phaser.GameObjects.Sprite {
                 this.x -= this.moveSpeed;
             } else if (keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width){
                 this.x += this.moveSpeed;
+            } else if (pointer.worldX <= game.config.width - borderUISize - this.width && pointer.worldX >= borderUISize + this.width) {
+                this.x = pointer.worldX  //works but do I need to slow it down?
             }
         }
         //fire button, 2nd part ensures sound won't play when rocket is in motion

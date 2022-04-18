@@ -15,3 +15,10 @@ let pointer
 // set UI sizes
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
+
+//Alterations breakdown:
+//Implement the speed increase that happens after 30 seconds in the original game - 5 pt
+//Display the time remaining (in seconds) on the screen - 10 pt
+//Implement mouse control for player movement and mouse click to fire - 20 pt
+//Use Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship - 20 pt
+//Total (so far): 55/100

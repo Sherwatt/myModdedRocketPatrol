@@ -37,7 +37,12 @@ class Play extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        //click =  Phaser.Input.MOUSE_DOWN
+        //beginning of particle generator
+        let part = this.add.particles('rocket');
+        let emit = part.createEmitter();
+        emit.setPosition(game.config.width/2, game.config.height/2);
+        emit.setSpeed(100);
+        emit.setBlendMode(Phaser.BlendModes.ADD);
         //configuration for animation
         this.anims.create({
             key: 'explode', //now we can call on an animation named 'explode'
@@ -143,7 +148,7 @@ class Play extends Phaser.Scene {
     } 
     //speeds up the ships after 30 seconds
     faster() {
-        game.settings.spaceshipSpeed *= 2 ;
+        game.settings.spaceshipSpeed += 1 ;
     }
     //for polish
     shipExplode(ship) {

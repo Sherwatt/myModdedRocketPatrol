@@ -143,7 +143,7 @@ class Play extends Phaser.Scene {
     } 
     //speeds up the ships after 30 seconds
     faster() {
-        this.moveSpeed *= 2 ;
+        game.settings.spaceshipSpeed *= 2 ;
     }
     //for polish
     shipExplode(ship) {

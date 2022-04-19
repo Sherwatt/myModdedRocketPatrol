@@ -8,7 +8,7 @@ class Play extends Phaser.Scene {
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
-        this.load.image('kaboom', './assets/star.png');
+        this.load.image('kaboom', './assets/star.png');     //made by Écrivain, found on OpenGameArt.org
         //loads spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         //load audio
@@ -20,6 +20,7 @@ class Play extends Phaser.Scene {
     create() {
         //place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.starfield.setDepth(-2); //ensures that nothing is behind the background
         //green UI background
         this.add.rectangle(0, borderUISize + borderPadding, game .config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
         // white borders
@@ -38,12 +39,6 @@ class Play extends Phaser.Scene {
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
-        //beginning of particle generator
-        let part = this.add.particles('kaboom');
-        let emit = part.createEmitter();
-        emit.setPosition(game.config.width/2, game.config.height/2);
-        emit.setSpeed(50);
-        emit.setBlendMode(Phaser.BlendModes.ADD);
         //configuration for animation
         this.anims.create({
             key: 'explode', //now we can call on an animation named 'explode'
@@ -158,6 +153,14 @@ class Play extends Phaser.Scene {
         //create an explosion at the ship's last position
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0, 0);
         boom.anims.play('explode');     //play animation
+        //create particle emitter
+        let part = this.add.particles('kaboom');
+        let emit = part.createEmitter();
+        emit.setPosition(ship.x, ship.y);
+        part.setDepth(-1);
+        emit.setSpeed(50);
+        emit.setBlendMode(Phaser.BlendModes.ADD);
+        emit.explode(2000, 20);
         boom.on('animationcomplete', () => {
             ship.reset();               //saves code by putting the reset into the larger function
             ship.alpha = 1;              //makes ship visible again

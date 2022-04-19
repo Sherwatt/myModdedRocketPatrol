@@ -156,11 +156,11 @@ class Play extends Phaser.Scene {
         //create particle emitter
         let part = this.add.particles('kaboom');
         let emit = part.createEmitter();
-        emit.setPosition(ship.x, ship.y);
+        emit.setPosition(ship.x+20, ship.y+10);
         part.setDepth(-1);
         emit.setSpeed(50);
         emit.setBlendMode(Phaser.BlendModes.ADD);
-        emit.explode(2000, 20);
+        emit.explode(70);
         boom.on('animationcomplete', () => {
             ship.reset();               //saves code by putting the reset into the larger function
             ship.alpha = 1;              //makes ship visible again

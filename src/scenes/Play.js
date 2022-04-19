@@ -13,7 +13,8 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         //load audio
         this.load.audio('sfx_select', './assets/slip_select12.wav');
-        this.load.audio('sfx_explosion', './assets/explosion38.wav');
+        this.load.audio('sfx_explosion1', './assets/explosion38.wav');
+        this.load.audio('sfx_explosion2', './assets/explosion39.flac');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
 
@@ -170,6 +171,6 @@ class Play extends Phaser.Scene {
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
         //plays explosion sound effect
-        this.sound.play('sfx_explosion');
+        this.sound.play('sfx_explosion2');
     }
 }

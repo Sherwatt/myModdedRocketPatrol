@@ -8,6 +8,7 @@ class Play extends Phaser.Scene {
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
+        this.load.image('kaboom', './assets/star.png');
         //loads spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         //load audio
@@ -38,10 +39,10 @@ class Play extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         //beginning of particle generator
-        let part = this.add.particles('rocket');
+        let part = this.add.particles('kaboom');
         let emit = part.createEmitter();
         emit.setPosition(game.config.width/2, game.config.height/2);
-        emit.setSpeed(100);
+        emit.setSpeed(50);
         emit.setBlendMode(Phaser.BlendModes.ADD);
         //configuration for animation
         this.anims.create({

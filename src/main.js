@@ -1,3 +1,7 @@
+//My Modded Rocket Patrol Project
+//Eamon Sherris-Watt
+//4/20/22
+//This took me roughly 11 hours to complete, including extra time spent trying to figure out repository stuff
 let config = {  //makes our game screen
     type: Phaser.AUTO,
     width: 640,

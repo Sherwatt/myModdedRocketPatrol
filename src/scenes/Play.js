@@ -143,14 +143,14 @@ class Play extends Phaser.Scene {
     }
     //displays the time
     displayRemainingTime() {
-        if(!this.gameOver) { //stops timer from updating after game has ended
-        this.timeLeft -= 1      //Jimmy helped me a lot here
-        if(this.shipHit) {
+        if(this.shipHit) { //called if you hit the ships
             this.timeLeft += this.timeset;
             this.shipHit = false;
         }
-        this.currentTime.text = this.timeLeft;
+        else if(!this.gameOver) { //stops timer from updating after game has ended, Jimmy helped me a lot here
+        this.timeLeft -= 1      //this is called every second
         }
+        this.currentTime.text = this.timeLeft;
     } 
     //speeds up the ships after 30 seconds
     faster() {

@@ -13,8 +13,7 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         //load audio
         this.load.audio('sfx_select', './assets/slip_select12.wav');
-        this.load.audio('test_explosion', './assets/explosion38.wav'); //just here so that I don't have to deal with always hearing the sound effects I made
-        this.load.audio('sfx_explosion1', './assets/normal_boom.wav'); //all these sound effects were made by me
+        this.load.audio('sfx_explosion1', './assets/normal_boom.wav'); //all of these 4 sound effects were made by me using ChipTone
         this.load.audio('sfx_explosion2', './assets/deteriorate.wav'); 
         this.load.audio('sfx_explosion3', './assets/starburst.wav'); 
         this.load.audio('sfx_explosion4', './assets/slightly_musical.wav'); 
@@ -86,7 +85,7 @@ class Play extends Phaser.Scene {
         this.timer = this.time.addEvent({delay: 1000, callback: this.displayRemainingTime, callbackScope: this, loop: true});
 
         //adds timer event for ship speed increase
-        this.lightSpeed = this.time.addEvent({delay: 30000, callback: this.faster, callbackScope: this, loop: false});
+        this.lightSpeed = this.time.addEvent({delay: 30000, callback: this.faster, callbackScope: this, loop: true}); //loops so it doesn't become too easy to keep the game going
 
         //GAME OVER flag
         this.gameOver = false;

@@ -27,4 +27,4 @@ let borderPadding = borderUISize / 3;
 //Use Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship - 20 pt
 //Create 4 new explosion SFX and randomize which one plays on impact - 10 pt
 //Implement a new timing/scoring mechanism that adds time to the clock for successful hits - 20 pt
-//Total (so far): 85/100
+//Total: 85/100

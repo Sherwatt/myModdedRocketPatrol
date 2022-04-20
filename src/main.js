@@ -21,4 +21,5 @@ let borderPadding = borderUISize / 3;
 //Display the time remaining (in seconds) on the screen - 10 pt
 //Implement mouse control for player movement and mouse click to fire - 20 pt
 //Use Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship - 20 pt
-//Total (so far): 55/100
+//Create 4 new explosion SFX and randomize which one plays on impact - 10 pt
+//Total (so far): 65/100

@@ -14,10 +14,10 @@ class Play extends Phaser.Scene {
         //load audio
         this.load.audio('sfx_select', './assets/slip_select12.wav');
         this.load.audio('test_explosion', './assets/explosion38.wav'); //just here so that I don't have to deal with always hearing the sound effects I made
-        this.load.audio('sfx_explosion1', './assets/normal_boom.wav'); //keep but raise volume
-        this.load.audio('sfx_explosion2', './assets/deteriorate.wav'); //good enough to keep
-        this.load.audio('sfx_explosion3', './assets/starburst.wav'); //keep but raise volume
-        this.load.audio('sfx_explosion4', './assets/slightly_musical.wav'); //keep
+        this.load.audio('sfx_explosion1', './assets/normal_boom.wav'); //all these sound effects were made by me
+        this.load.audio('sfx_explosion2', './assets/deteriorate.wav'); 
+        this.load.audio('sfx_explosion3', './assets/starburst.wav'); 
+        this.load.audio('sfx_explosion4', './assets/slightly_musical.wav'); 
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
 
@@ -91,6 +91,7 @@ class Play extends Phaser.Scene {
         //GAME OVER flag
         this.gameOver = false;
         
+        this.shipHit = false;
         //timer for gameplay
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => { //Phaser calls function after a delay of a set time
@@ -144,12 +145,16 @@ class Play extends Phaser.Scene {
     displayRemainingTime() {
         if(!this.gameOver) { //stops timer from updating after game has ended
         this.timeLeft -= 1      //Jimmy helped me a lot here
+        if(this.shipHit) {
+            this.timeLeft += this.timeset;
+            this.shipHit = false;
+        }
         this.currentTime.text = this.timeLeft;
         }
     } 
     //speeds up the ships after 30 seconds
     faster() {
-        game.settings.spaceshipSpeed += 1 ;
+        game.settings.spaceshipSpeed += 1;
     }
     //for polish
     shipExplode(ship) {
@@ -174,6 +179,10 @@ class Play extends Phaser.Scene {
         //score changing
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
+        this.timeset = (ship.points/10) * 2;
+        this.shipHit = true;
+        this.displayRemainingTime();
+        this.clock.delay += this.timeset * 1000
         //make array for the explosion sound effects
         const good_sounds = ['sfx_explosion1', 'sfx_explosion2', 'sfx_explosion3', 'sfx_explosion4'];
         //make value for rng picker

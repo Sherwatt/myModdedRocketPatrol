@@ -26,11 +26,15 @@ class Menu extends Phaser.Scene {
         }
 
         //display menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5); 
+        //I fixed a mistake I made here where I accidentally covered up the game title in the original code
         this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '24px'; //needed to resize because the text is too long otherwise
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Or use the mouse to move and click to fire', menuConfig).setOrigin(0.5); //new instructions
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        menuConfig.fontSize = '28px';
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize*2 + borderPadding*2, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
     
         //define the keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

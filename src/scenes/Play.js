@@ -13,10 +13,11 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
         //load audio
         this.load.audio('sfx_select', './assets/slip_select12.wav');
-        this.load.audio('sfx_explosion1', './assets/normal_boom.wav');
-        this.load.audio('sfx_explosion2', './assets/deteriorate.wav');
-        this.load.audio('sfx_explosion3', './assets/starburst.wav');
-        this.load.audio('sfx_explosion4', './assets/slightly_musical.wav');
+        this.load.audio('test_explosion', './assets/explosion38.wav'); //just here so that I don't have to deal with always hearing the sound effects I made
+        this.load.audio('sfx_explosion1', './assets/normal_boom.wav'); //keep but raise volume
+        this.load.audio('sfx_explosion2', './assets/deteriorate.wav'); //good enough to keep
+        this.load.audio('sfx_explosion3', './assets/starburst.wav'); //keep but raise volume
+        this.load.audio('sfx_explosion4', './assets/slightly_musical.wav'); //keep
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
     }
 
@@ -48,6 +49,7 @@ class Play extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('explosion', { start: 0, end: 9, first: 0}), //pretty understandable
             frameRate: 30
         });
+
         //initialize score
         this.p1Score = 0;
 
@@ -172,7 +174,11 @@ class Play extends Phaser.Scene {
         //score changing
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
-        //plays explosion sound effect
-        this.sound.play('sfx_explosion1');
+        //make array for the explosion sound effects
+        const good_sounds = ['sfx_explosion1', 'sfx_explosion2', 'sfx_explosion3', 'sfx_explosion4'];
+        //make value for rng picker
+        let sound_selector = Phaser.Math.RND;
+        let sound_selection = sound_selector.pick(good_sounds);
+        this.sound.play(sound_selection); //plays random explosion sound
     }
 }
